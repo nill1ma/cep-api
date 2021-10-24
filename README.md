@@ -9,8 +9,8 @@ A small api to get brazilians address by cep and other informations
 # Check if the images was created running command below in any folder
   - docker ps
 # Access URL's below
-  - Access url http://0.0.0.0:9200
-  - Access url http://0.0.0.0:5601
+  - http://0.0.0.0:9200
+  - http://0.0.0.0:5601
 
 # Install dependencies of prject
   - npm install
