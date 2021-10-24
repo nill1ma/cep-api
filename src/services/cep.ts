@@ -6,11 +6,10 @@ class Cep implements ICep {
 
     async getByCep(cep: number) {
         const response = await axios.get(`https://viacep.com.br/ws/${cep}/json`)
-        console.log(response.status)
         if (response.data.erro) {
             return []
         }
-        return JSON.stringify(response.data)
+        return response.data
     }
 
     async getByParams(params: MCep) {

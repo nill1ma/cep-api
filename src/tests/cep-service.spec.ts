@@ -1,7 +1,7 @@
 import { MCep } from "../model/cep"
-import service from "./cep"
+import service from "../services/cep"
 describe('Get CEP API researching by cep number', () => {
-  
+
 
   it('Should return response status code 400', async () => {
     const response = await service.getByCep(88000231)
@@ -10,7 +10,7 @@ describe('Get CEP API researching by cep number', () => {
 
 
   it('Should return a address researched by cep', async () => {
-    expect(await service.getByCep(88020231)).toBe(JSON.stringify({
+    expect(await service.getByCep(88020231)).toEqual({
       "cep": "88020-231",
       "logradouro": "Rua 13 de Maio",
       "complemento": "lado ímpar",
@@ -21,26 +21,30 @@ describe('Get CEP API researching by cep number', () => {
       "gia": "",
       "ddd": "48",
       "siafi": "8105"
-    }))
+    })
   })
 })
 
 describe('Get CEP API researching by params', () => {
 
   it('Should return response with a list of address', async () => {
-    const mcep = new MCep()
-    mcep.state = 'RS'
-    mcep.city = 'Porto%20Alegre'
-    mcep.street = 'Domings'
+    const mcep: MCep = {
+      state: 'RS',
+      city: 'Porto%20Alegre',
+      street: 'Domings'
+
+    }
     const response = await service.getByParams(mcep)
     expect(response).toEqual([])
   })
 
   it('Should return response with a list of address', async () => {
-    const mcep = new MCep()
-    mcep.state = 'RS'
-    mcep.city = 'Porto Alegre'
-    mcep.street = 'Domingos%20Jose'
+    const mcep: MCep = {
+      state: 'RS',
+      city: 'Porto Alegre',
+      street: 'Domingos%20Jose'
+    }
+
     const response = await service.getByParams(mcep)
     expect(response).toEqual([
       {

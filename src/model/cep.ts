@@ -1,5 +1,5 @@
-export class MCep {
-    public city:string
-    public state:string
-    public street:string
+export interface MCep {
+    city:string
+    state:string
+    street:string
 }
